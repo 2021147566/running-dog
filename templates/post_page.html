@@ -96,11 +96,11 @@
                             <div class="media">
                                 <div class="media-body">
                                     <h5 class="mt-0"> 작성할 내용 </h5>
-                                    <form action="/tweet/" method="post">
+                                    <form action="/post-page/" method="post">
                                         {% csrf_token %}
                                         <div class="form-group mt-2 mb-2">
-                                            <label for="my-title"> 장소 이름 </label>
-                                            <input type="text" class="form-control" id="my-title" name="my-title">
+                                            <label for="my-place"> 장소 이름 </label>
+                                            <input type="text" class="form-control" id="my-place" name="my-place">
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="my-content"> 정보 </label>
