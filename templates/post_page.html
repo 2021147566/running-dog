@@ -1,0 +1,60 @@
+<!-- 상단 네비게이션 -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container timeline-container">
+    <div class="row">
+        <!-- 왼쪽 컬럼 -->
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"> 지도 </h5>
+                    <div class="empty-box"></div>
+                </div>
+            </div>
+            <div class="card mt-2">
+                <div class="card-body">
+                    <h5 class="card-title"> 사진 추가 </h5>
+                    <form method="post" enctype="multipart/form-data">
+                        <!-- 사진 업로드 버튼-->
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                        <div class="empty-box"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- 오른 쪽 컬럼-->
+        <div class="col">
+            <!-- 글을 작성 하는 곳 -->
+            <div class="row mb-2">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h5 class="mt-0"> 작성할 내용 </h5>
+                                    <form action="/tweet/" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group mt-2 mb-2">
+                                            <label for="my-title"> 장소 이름 </label>
+                                            <input type="text" class="form-control" id="my-title" name="my-title">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="my-content"> 정보 </label>
+                                            <textarea class="form-control" style="resize: none; height: 200px;" name='my-content'
+                                                      id="my-content"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" style="float:right;">작성하기</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
