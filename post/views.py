@@ -21,8 +21,14 @@ def post_page_view(request):
         mypost.author = user
         mypost.place_name = request.POST.get('my-place', '')
         mypost.contents = request.POST.get('my-content', '')
+        # 이미지 공백 시 에러 발생 방지
+        try:
+            mypost.image = request.FILES['image']
+        except:
+            mypost.image = None
         mypost.save()
-        return redirect('/')
+        # TODO: 저장하고나서 해당 게시물 상세페이지로 이동하도록
+        return redirect('/detail-page')
 
 def detail_page_view(request):
     return render(request, 'detail_page.html')

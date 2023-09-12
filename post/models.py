@@ -12,4 +12,4 @@ class PostModel(models.Model):
     place_name = models.CharField(max_length=20, null=False)
     contents = models.TextField(null=False)
     updated_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(upload_to="images/", blank=True, null=True)
