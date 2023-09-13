@@ -9,4 +9,5 @@ urlpatterns = [
     path('detail-page/<int:id>', views.detail_page_view, name='detail-page'),
     path('my-page/<int:id>', views.my_page_view, name='my-page'),
     path('my-page/<int:id>/my-feed/', views.my_feed_view, name='my-feed'),
+    path('other-page/<int:id>', views.other_page_view, name='my-page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
