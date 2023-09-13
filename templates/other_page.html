@@ -6,20 +6,22 @@
 {% block content %}
 <div class="container">
     <div class="wrap-mypage">
-        {% if user.profile_pic %}
-        <img class="profile-pic" src="{{user.profile_pic.url}}">
+        {% if other.profile_pic %}
+        <img class="profile-pic" src="{{other.profile_pic.url}}">
         {% else %}
         <div class="profile-pic"></div>
         {% endif %}
         <div class="profile-content">
             <div class="profile">
-                <h5> {{ user.username }} </h5>
-                <p style="font-size: small">{{ user.email }}</p>
-                <p> {{ user.bio }} </p>
+                <h5> {{ other.username }} </h5>
+                <p style="font-size: small">{{ other.email }}</p>
+                <p> {{ other.bio }} </p>
             </div>
             <div class="profile-btn">
-                <a href="/my-page/{{ user.id }}/my-feed" class="btn btn-dark">{{ user.username }}의 게시물 보기</a>
+                <a href="/my-page/{{ other.id }}/my-feed" class="btn btn-dark">{{other.username}}의 게시물 보기</a>
+                {% if other == user %}
                 <a href="/my-page/{{ user.id }}/profile-update" class="btn btn-dark ms-2">개인 정보 수정</a>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -94,6 +94,9 @@
                                     <h5 class="mt-0"> {{ detail.place_name }} </h5>
                                     <h6 class="mt-0"> {{ detail.contents }} </h6>
                                 </div>
+                                <div style="text-align: right; cursor: pointer;" onclick="location.href='/other-page/{{ detail.author_id }}';">
+                                    <span style="font-size: small"> {{ detail.author.username }} - {{ detail.updated_at }} </span>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -42,10 +42,16 @@ def detail_page_view(request, id):
 def my_page_view(request, id):
     if request.method == 'GET':
         user = UserModel.objects.get(id=id)
-        return render(request, 'my_page.html', {'tweet': user})
+        return render(request, 'my_page.html', {'user': user})
 
 
 def my_feed_view(request, id):
     if request.method == 'GET':
         my_feed = PostModel.objects.filter(author_id=id).order_by('-updated_at')
         return render(request, 'my_feed.html', {'feed': my_feed})
+
+
+def other_page_view(request, id):
+    if request.method == 'GET':
+        other = UserModel.objects.get(id=id)
+        return render(request, 'other_page.html', {'other': other})

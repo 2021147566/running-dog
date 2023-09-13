@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+개인정보 수정
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="wrap wrap-box-pf-update">
+        <h2 class="title-center"> 개인정보 수정 </h2>
+        <form class="form-area" method="post" action="/my-page/{{ profile.id }}/profile-update/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <div class="form-group mt-2 mb-2">
+                        <img id="output" class="pro-pic" style="display: none;">
+                        {% if user.profile_pic %}
+                        <img id="pic" class="pro-pic" src="{{profile.profile_pic.url}}">
+                        {% endif %}
+                        <label for="email"> 프로필 사진 </label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="profile_pic" name="profile_pic"
+                                   accept="profile/*"
+                                   onchange="loadFile(event)">
+                            <button type="button" id="delete_btn" class="btn btn-dark"
+                                    style="display: none; border-radius: 0px 5px 5px 0px;"> X
+                            </button>
+                        </div>
+                        <script>
+                            <!-- 이미지 미리보기 메소드 -->
+                            var loadFile = function(event) {
+                              var output = document.getElementById('output');
+                              var d_btn = document.getElementById('delete_btn');
+                              var pic = document.getElementById('pic');
+                              output.style.display = "";
+                              d_btn.style.display = "";
+                              pic.style.display = 'none';
+                              output.src = URL.createObjectURL(event.target.files[0]);
+                              output.onload = function() {
+                                URL.revokeObjectURL(output.src)
+                              }
+                            };
+                            <!-- 이미지 미리보기 삭제 메소드 -->
+                            document.getElementById("delete_btn").onclick = function () {
+                                var fileInput = document.getElementById('profile_pic');
+                                var d_btn = document.getElementById('delete_btn');
+                                var output = document.getElementById('output');
+                                fileInput.value = '';
+                                d_btn.style.display = 'none';
+                                output.style.display = 'none';
+                            };
+                        </script>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group mt-2 mb-2">
+                        <label for="email">이메일</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{profile.email}}">
+                    </div>
+                    <div class="form-group mt-4 mb-2">
+                        <label for="username">이름</label>
+                        <input type="text" class="form-control" id="username" name="username"
+                               value="{{profile.username}}">
+                    </div>
+                    <div class="form-group mt-4 mb-2">
+                        <label for="username">자기소개</label>
+                        <input type="text" class="form-control" id="bio" name="bio" value="{{profile.bio}}">
+                    </div>
+                    <div class="form-group mt-4 mb-2">
+                        <label for="password">비밀번호</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                </div>
+            </div>
+            <div style="float: right">
+                <button type="submit" class="btn btn-primary"> 저장</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
