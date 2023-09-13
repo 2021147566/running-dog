@@ -29,8 +29,7 @@ def post_page_view(request):
         except:
             mypost.image = None
         mypost.save()
-        # TODO: 저장하고나서 해당 게시물 상세페이지로 이동하도록
-        return redirect('/detail-page')
+        return redirect(f'/detail-page/{ mypost.id }')
 
 def detail_page_view(request):
     return render(request, 'detail_page.html')
