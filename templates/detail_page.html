@@ -76,21 +76,23 @@
         </div>
         <!-- 오른 쪽 컬럼-->
         <div class="col">
-            <!-- 글을 작성 하는 곳 -->
+            <!-- 글 내용이 보이는 곳 -->
             <div class="row mb-2">
                 <div class="col-md-12">
+                    {% if detail.image %}
                     <div class="card mb-2">
                         <div class="card-body">
                             <h5 class="card-title"> 사진 </h5>
-                            
-                            <div class="empty-box"></div>
+                            <img style="width: 600px; height: 400px;" src="{{ detail.image.url }}">
                         </div>
                     </div>
+                    {% endif %}
                     <div class="card">
                         <div class="card-body">
                             <div class="media">
                                 <div class="media-body">
-                                    <h5 class="mt-0"> 상세 내용 </h5>
+                                    <h5 class="mt-0"> {{ detail.place_name }} </h5>
+                                    <h6 class="mt-0"> {{ detail.contents }} </h6>
                                 </div>
                             </div>
                         </div>

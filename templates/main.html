@@ -75,7 +75,7 @@
     </li>
     <!--작성 페이지로 이동-->
     <li class="nav-item">
-        <a class="nav-link" href="/post-page" >Post</a>
+        <a class="nav-link" href="/post-page">Post</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="login.html">Login</a>
@@ -151,28 +151,12 @@
     </div>
     <ul class="posts">
         <!-- div 영역 클릭시 상세페이지로 TODO: 데이터 추가후 추가된 데이터의 상세페이지로 가도록 수정 -->
-        <div class="post" style=" cursor: pointer;" onclick="location.href='/detail-page';">
-
+        {% for pc in post %}
+        <div class="post" style="cursor: pointer;" onclick="location.href='/detail-page/{{ pc.id }}';">
+            <h5> {{ pc.place_name }} </h5>
+            <h6> {{ pc.contents }} </h6>
         </div>
-        <div class="post">
-
-        </div>
-        <div class="post">
-
-        </div>
-        <div class="post">
-
-        </div>
-        <div class="post">
-
-        </div>
-        <div class="post">
-
-        </div>
-        <div class="post">
-
-        </div>
-
+        {% endfor %}
     </ul>
 </div>
 </body>

@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import PostModel
+from .models import PostModel, UserModel
 
 
 def home(request):
-    return render(request, 'main.html')
+    if request.method == 'GET':
+        all_post = PostModel.objects.all().order_by('-updated_at')
+        return render(request, 'main.html', {'post': all_post})
 
 
 def post_page_view(request):
@@ -27,12 +29,17 @@ def post_page_view(request):
         except:
             mypost.image = None
         mypost.save()
-        # TODO: 저장하고나서 해당 게시물 상세페이지로 이동하도록
-        return redirect('/detail-page')
-
-def detail_page_view(request):
-    return render(request, 'detail_page.html')
+        return redirect(f'/detail-page/{ mypost.id }')
 
 
-def my_page_view(request):
-    return render(request, 'my_page.html')
+def detail_page_view(request, id):
+    # return render(request, 'detail_page.html')
+    if request.method == 'GET':
+        detail_page = PostModel.objects.get(id=id)
+        return render(request, 'detail_page.html', {'detail': detail_page})
+
+
+def my_page_view(request, id):
+    if request.method == 'GET':
+        user = UserModel.objects.get(id=id)
+        return render(request, 'my_page.html', {'tweet': user})

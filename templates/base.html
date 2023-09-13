@@ -71,6 +71,7 @@
             border-radius: 5px;
             margin: 0 auto;
             margin-top: 30px;
+            padding: 30px 20px 0px 20px;
         }
         .profile-btn {
             width: 250px;
@@ -97,7 +98,7 @@
             {% else %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item disabled">
-                    <a class="nav-link" href="/my-page"> 마이 페이지 </a>
+                    <a class="nav-link" href="/my-page/{{ user.id }}"> 마이 페이지 </a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/"> 로그아웃 </a>
