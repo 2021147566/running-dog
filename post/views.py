@@ -31,8 +31,12 @@ def post_page_view(request):
         mypost.save()
         return redirect(f'/detail-page/{ mypost.id }')
 
-def detail_page_view(request):
-    return render(request, 'detail_page.html')
+
+def detail_page_view(request, id):
+    # return render(request, 'detail_page.html')
+    if request.method == 'GET':
+        detail_page = PostModel.objects.get(id=id)
+        return render(request, 'detail_page.html', {'detail': detail_page})
 
 
 def my_page_view(request, id):
