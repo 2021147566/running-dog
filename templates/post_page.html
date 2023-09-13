@@ -130,6 +130,35 @@
                                                 };
                                             </script>
                                         </div>
+                                        
+                                        <script>
+                                            <!-- 사용자 위도 경도 받아오는 메소드 -->
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                                if (navigator.geolocation) {
+                                                    navigator.geolocation.getCurrentPosition(function(position) {
+                                                        var latitude = position.coords.latitude;
+                                                        var longitude = position.coords.longitude;
+                                        
+                                                        // 서버로 위도와 경도 값을 전송하거나, 폼 필드에 할당하여 제출할 수 있습니다.
+                                                        document.getElementById("latitudeField").value = latitude;
+                                                        document.getElementById("longitudeField").value = longitude;
+                                        
+                                                        // 위치 정보를 수집한 후, 폼을 자동으로 제출할 수도 있습니다.
+                                                        document.getElementById("myForm").submit();
+                                                    });
+                                                } else {
+                                                    alert("Geolocation is not supported by this browser.");
+                                                }
+                                            });
+                                        </script>
+                                        
+                                        <!-- 위치 정보를 서버로 전송할 폼 -->
+                                        <form id="myForm" method="post" action="{% url 'post-page' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" id="latitudeField" name="latitude" value="">
+                                            <input type="hidden" id="longitudeField" name="longitude" value="">
+
+                                        </form>
                                         <button type="submit" class="btn btn-primary" style="float:right;">작성하기</button>
                                     </form>
                                 </div>
