@@ -9,7 +9,11 @@ class PostModel(models.Model):
         db_table = "my_post"
 
     author = models.ForeignKey(UserModel, on_delete=models.CASCADE)
-    place_name = models.CharField(max_length=20, null=False)
+    place_name = models.TextField(null=False, blank=False)
     contents = models.TextField(null=False)
     updated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to="images/", blank=True, null=True)
+    latitude = models.DecimalField(
+        max_digits=11, decimal_places=6, null=True, blank=True)
+    longitude = models.DecimalField(
+        max_digits=11, decimal_places=6, null=True, blank=True)
