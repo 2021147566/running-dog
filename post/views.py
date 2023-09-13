@@ -10,6 +10,7 @@ def home(request):
 
 
 def post_page_view(request):
+
     if request.method == 'GET':
         user = request.user.is_authenticated
         if user:
@@ -46,6 +47,7 @@ def detail_page_view(request, id):
     # return render(request, 'detail_page.html')
     if request.method == 'GET':
         detail_page = PostModel.objects.get(id=id)
+        all_post = PostModel.objects.all().order_by('-updated_at')
         return render(request, 'detail_page.html', {'detail': detail_page})
 
 
@@ -57,5 +59,6 @@ def my_page_view(request, id):
 
 def my_feed_view(request, id):
     if request.method == 'GET':
-        my_feed = PostModel.objects.filter(author_id=id).order_by('-updated_at')
+        my_feed = PostModel.objects.filter(
+            author_id=id).order_by('-updated_at')
         return render(request, 'my_feed.html', {'feed': my_feed})
