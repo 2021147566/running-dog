@@ -36,5 +36,7 @@ def detail_page_view(request):
     return render(request, 'detail_page.html')
 
 
-def my_page_view(request):
-    return render(request, 'my_page.html')
+def my_page_view(request, id):
+    if request.method == 'GET':
+        user = UserModel.objects.get(id=id)
+        return render(request, 'my_page.html', {'tweet': user})
