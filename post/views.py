@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import PostModel
+from .models import PostModel, UserModel
 
 
 def home(request):
-    return render(request, 'main.html')
+    if request.method == 'GET':
+        all_post = PostModel.objects.all().order_by('-updated_at')
+        return render(request, 'main.html', {'post': all_post})
 
 
 def post_page_view(request):
