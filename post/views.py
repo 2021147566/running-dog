@@ -43,3 +43,9 @@ def my_page_view(request, id):
     if request.method == 'GET':
         user = UserModel.objects.get(id=id)
         return render(request, 'my_page.html', {'tweet': user})
+
+
+def my_feed_view(request, id):
+    if request.method == 'GET':
+        my_feed = PostModel.objects.filter(author_id=id).order_by('-updated_at')
+        return render(request, 'my_feed.html', {'feed': my_feed})
