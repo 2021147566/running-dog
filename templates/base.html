@@ -74,9 +74,25 @@
             padding: 30px 20px 0px 20px;
         }
         .profile-btn {
-            width: 250px;
+            width: 350px;
             margin: 0 auto;
             margin-top: 15px;
+        }
+        .wrap-box-pf-update {
+            margin-top: 100px;
+            width: 800px;
+            height: 550px;
+            padding: 5px 20px 5px;
+            border:1px solid #d2d2d2;
+            border-radius: 5px;
+        }
+        .pro-pic {
+            width: 250px;
+            height: 250px;
+            border:1px solid #d2d2d2;
+            border-radius: 125px;
+            margin-bottom: 10px;
+            margin-left: 50px;
         }
     </style>
 </head>
@@ -97,6 +113,9 @@
             </ul>
             {% else %}
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item disabled">
+                        <span class="nav-link"> {{ user.username }} 님 반갑습니다. </span>
+                    </li>
                 <li class="nav-item disabled">
                     <a class="nav-link" href="/my-page/{{ user.id }}"> 마이 페이지 </a>
                 </li>
