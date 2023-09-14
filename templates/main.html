@@ -70,25 +70,38 @@
 
 <body>
 <ul class="nav-underline">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="main.html">Home</a>
-    </li>
+<!--    <li class="nav-item">-->
+<!--        <a class="nav-link active" aria-current="page" href="main.html">Home</a>-->
+<!--    </li>-->
     <!--작성 페이지로 이동-->
+    {% if not user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link" href="/sign-in">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/sign-up">Signup</a>
+    </li>
+    {% else %}
+    <li class="nav-item disabled">
+        <span class="nav-link"> {{ user.username }} 님 반갑습니다. </span>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="/post-page">Post</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="login.html">Login</a>
+    <li class="nav-item disabled">
+        <a class="nav-link" href="/my-page/{{ user.id }}"> My Page </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="signup.thml">Signup</a>
+    <li class="nav-item active">
+        <a class="nav-link" href="/logout"> Logout </a>
     </li>
+    {% endif %}
 </ul>
 
 <div class="feed">
     <div id="map" style="width:50%;height:60%; margin-top: 10%; margin-left: 2%;">
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38897b8a4422367a6f2b7aa682a262c2"></script>
-        
+        <script type="text/javascript"
+                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38897b8a4422367a6f2b7aa682a262c2"></script>
+
         <script>
             // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
             var infowindow = new kakao.maps.InfoWindow({zIndex:1});

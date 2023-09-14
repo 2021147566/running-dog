@@ -18,7 +18,7 @@ def post_page_view(request):
             return render(request, 'post_page.html')
         else:
             # TODO: 로그인 안 했을 경우 로그인 페이지로 이동
-            return redirect('/')
+            return redirect('/sign-in')
     elif request.method == 'POST':
         form = LocationForm(request.POST)
         if form.is_valid():
