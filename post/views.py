@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import PostModel, UserModel
 from .forms import LocationForm
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -67,3 +68,31 @@ def other_page_view(request, id):
     if request.method == 'GET':
         other = UserModel.objects.get(id=id)
         return render(request, 'other_page.html', {'other': other})
+
+
+@login_required
+def delete_page_view(request, id):
+    page = PostModel.objects.get(id=id)
+    page.delete()
+    return redirect('/')
+
+
+def update_page_view(request, id):
+    post = PostModel.objects.get(id=id)
+    if request.method == 'GET':
+        # 개별 페이지에서 수정 버튼 클릭시 수정 가능한 페이지로 이동
+        return render(request,'update_page.html', {'post': post})
+
+    elif request.method == 'POST':
+        # 수정 후 수정하기 버튼 클릭시 내용 저장하고 개별페이지로 이동
+        post.place_name = request.POST['my-place']
+        post.contents = request.POST['my-content']
+        try:
+            post.image = request.FILES['image']
+        except:
+            if post.image:
+                post.image = post.image
+            else:
+                post.image = None
+        post.save()
+        return redirect(f'/detail-page/{id}')

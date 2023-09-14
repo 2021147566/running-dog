@@ -9,9 +9,9 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"> 지도 </h5>
-                    <div id="map" style= "height: 400px;">
+                    <div id="map" style="height: 400px;">
                         <script type="text/javascript"
-                            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38897b8a4422367a6f2b7aa682a262c2"></script>
+                                src="//dapi.kakao.com/v2/maps/sdk.js?appkey=38897b8a4422367a6f2b7aa682a262c2"></script>
                         <script>
                             var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                                 mapOption = {
@@ -78,7 +78,7 @@
                             }
 
                         </script>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,9 +102,23 @@
                                     <h5 class="mt-0"> {{ detail.place_name }} </h5>
                                     <h6 class="mt-0"> {{ detail.contents }} </h6>
                                 </div>
-                                <div style="text-align: right; cursor: pointer;" onclick="location.href='/other-page/{{ detail.author_id }}';">
-                                    <span style="font-size: small"> {{ detail.author.username }} - {{ detail.updated_at }} </span>
+                                <div>
+                                    {% if detail.author == user %}
+                                    <div style="text-align: right; cursor: pointer;">
+                                        <button class="btn btn-dark btn-sm" onclick="location.href='/detail-page/{{ detail.id }}/update';">
+                                            수정
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" onclick="location.href='/detail-page/{{ detail.id }}/delete';">
+                                            삭제
+                                        </button>
+                                    </div>
+                                    {% endif %}
+                                    <div style="text-align: right; cursor: pointer;"
+                                         onclick="location.href='/other-page/{{ detail.author_id }}';">
+                                        <span style="font-size: small"> {{ detail.author.username }} - {{ detail.updated_at }} </span>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
